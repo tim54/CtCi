@@ -1,5 +1,8 @@
 package Q1_03_URLify;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import CtCILibrary.AssortedMethods;
 
 public class Question {
@@ -35,11 +38,33 @@ public class Question {
 		return -1;
 	}
 	
+	public static char[] myReplaceSpaces(char[] str){
+		List<Character> list = new ArrayList<Character>();
+		for (int i = 0; i < str.length; i++){
+			if (str[i] == ' '){
+				list.add('%');
+				list.add('2');
+				list.add('0');
+			} else {
+				list.add(str[i]);
+			}
+		}
+		
+		char[] retChars = new char[list.size()];
+		int i = 0;
+		for (char ch : list){
+			retChars[i++] = ch;
+		}
+		
+		return retChars;
+	}
+	
 	public static void main(String[] args) {
 		String str = "Mr John Smith    ";
 		char[] arr = str.toCharArray();
 		int trueLength = findLastCharacter(arr) + 1;
-		replaceSpaces(arr, trueLength);	
-		System.out.println("\"" + AssortedMethods.charArrayToString(arr) + "\"");
+		// replaceSpaces(arr, trueLength);
+		// System.out.println("\"" + AssortedMethods.charArrayToString(arr) + "\"");
+		System.out.println("\"" + AssortedMethods.charArrayToString(myReplaceSpaces(arr)) + "\"");
 	}
 }
